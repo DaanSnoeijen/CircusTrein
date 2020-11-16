@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CircusTrein
 {
-    class Animal
+    public class Animal
     {
         public string diet { get; private set; }
         public string size { get; private set; }

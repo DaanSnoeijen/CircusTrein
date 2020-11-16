@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CircusTrein
 {
-    class Wagon
+    public class Wagon
     {
         public int points;
         public int maxPoints { get; private set; } = 10;

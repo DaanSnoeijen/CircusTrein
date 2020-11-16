@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CircusTrein
 {
-    class WagonContainer
+    public class WagonContainer
     {
         public List<Wagon> wagonList = new List<Wagon>();
 

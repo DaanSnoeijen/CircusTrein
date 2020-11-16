@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CircusTrein
 {
-    class WagonController
+    public class WagonController
     {
         //check if animal is not in wagon
         public void CheckNextAnimal()
