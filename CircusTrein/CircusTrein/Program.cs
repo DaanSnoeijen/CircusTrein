@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CircusTrein
 {
-    static class Program
+    public static class Program
     {
         public static AnimalContainer AnimalContainer = new AnimalContainer();
         public static WagonContainer WagonContainer = new WagonContainer();

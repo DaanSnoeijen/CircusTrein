@@ -11,15 +11,11 @@ namespace CircustreinUnittests
         public void TestMethod1()
         {
             //Algorythm
-            AnimalContainer animalContainer = new AnimalContainer();
-            animalContainer.CreateAnimal("Plant", "Medium");
-            animalContainer.CreateAnimal("Meat", "Medium");
-            animalContainer.CreateAnimal("Meat", "Small");
+            Program.AnimalContainer.CreateAnimal("Plant", "Medium");
+            Program.AnimalContainer.CreateAnimal("Meat", "Medium");
+            Program.AnimalContainer.CreateAnimal("Meat", "Small");
 
-            WagonContainer wagonContainer = new WagonContainer();
-
-            WagonController wagonController = new WagonController();
-            wagonController.CheckNextAnimal();
+            Program.WagonController.CheckNextAnimal();
 
             //Expected outcome
             AnimalContainer animalContainerTest = new AnimalContainer();
@@ -34,7 +30,10 @@ namespace CircustreinUnittests
             wagonContainerTest.wagonList[0].WagonAnimalList.Add(animalContainerTest.animalList[2]);
             wagonContainerTest.wagonList[1].WagonAnimalList.Add(animalContainerTest.animalList[1]);
 
-            Assert.AreEqual(wagonContainerTest.wagonList, wagonContainer.wagonList);
+            for (int i = 0; i < wagonContainerTest.wagonList.Count; i++)
+            {
+                Assert.AreEqual(wagonContainerTest.wagonList[i].WagonAnimalList[0].ToString(), Program.WagonContainer.wagonList[i].WagonAnimalList[0].ToString());
+            }
         }
     }
 }
