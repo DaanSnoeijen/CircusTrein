@@ -10,7 +10,6 @@ namespace CircusTrein
     {
         public int points;
         public int maxPoints { get; private set; } = 10;
-        public bool isChecked = false;
 
         public List<Animal> WagonAnimalList = new List<Animal>();
 

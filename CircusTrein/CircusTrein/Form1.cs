@@ -46,7 +46,6 @@ namespace CircusTrein
             foreach (Wagon wagon in Program.WagonContainer.wagonList)
             {
                 WagonBox.Items.Add(wagon);
-                wagon.isChecked = false;
             }
         }
 

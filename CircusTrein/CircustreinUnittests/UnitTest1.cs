@@ -22,20 +22,17 @@ namespace CircustreinUnittests
             wagonController.CheckNextAnimal();
 
             //Expected outcome
-            Animal animal1 = new Animal("Plant", "Medium");
-            Animal animal2 = new Animal("Meat", "Medium");
-            Animal animal3 = new Animal("Meat", "Small");
-
-            Wagon wagon1 = new Wagon();
-            wagon1.WagonAnimalList.Add(animal1);
-            wagon1.WagonAnimalList.Add(animal3);
-
-            Wagon wagon2 = new Wagon();
-            wagon2.WagonAnimalList.Add(animal2);
+            AnimalContainer animalContainerTest = new AnimalContainer();
+            animalContainerTest.CreateAnimal("Plant", "Medium");
+            animalContainerTest.CreateAnimal("Meat", "Medium");
+            animalContainerTest.CreateAnimal("Meat", "Small");
 
             WagonContainer wagonContainerTest = new WagonContainer();
-            wagonContainerTest.wagonList.Add(wagon1);
-            wagonContainerTest.wagonList.Add(wagon2);
+            wagonContainerTest.AddWagon();
+            wagonContainerTest.AddWagon();
+            wagonContainerTest.wagonList[0].WagonAnimalList.Add(animalContainerTest.animalList[0]);
+            wagonContainerTest.wagonList[0].WagonAnimalList.Add(animalContainerTest.animalList[2]);
+            wagonContainerTest.wagonList[1].WagonAnimalList.Add(animalContainerTest.animalList[1]);
 
             Assert.AreEqual(wagonContainerTest.wagonList, wagonContainer.wagonList);
         }

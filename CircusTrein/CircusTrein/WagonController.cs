@@ -38,18 +38,18 @@ namespace CircusTrein
             }
             else
             {
-                CheckSpacePreviousWagons(animal);
+                CheckSpacePreviousWagons(animal, 0);
             }
         }
 
         //check if previous wagons have enough space for new animal
-        public void CheckSpacePreviousWagons(Animal animal)
+        public void CheckSpacePreviousWagons(Animal animal, int index)
         {
             //check every wagon
-            for (int i = 0; i < Program.WagonContainer.wagonList.Count; i++)
+            for (int i = index; i < Program.WagonContainer.wagonList.Count; i++)
             {
                 //check space inside wagon
-                if (!Program.WagonContainer.wagonList[i].isChecked && Program.WagonContainer.wagonList[i].points + animal.points <= Program.WagonContainer.wagonList[i].maxPoints)
+                if (Program.WagonContainer.wagonList[i].points + animal.points <= Program.WagonContainer.wagonList[i].maxPoints)
                 {
                     CheckFood(animal, Program.WagonContainer.wagonList[i]);
                 }
@@ -94,8 +94,7 @@ namespace CircusTrein
             }
             else
             {
-                wagon.isChecked = true;
-                CheckSpacePreviousWagons(animal);
+                CheckSpacePreviousWagons(animal, Program.WagonContainer.wagonList.IndexOf(wagon) + 1);
             }
         }
     }
