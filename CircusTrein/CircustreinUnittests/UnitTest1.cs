@@ -10,29 +10,45 @@ namespace CircustreinUnittests
         [TestMethod]
         public void TestMethod1()
         {
-            //Algorythm
-            Program.AnimalContainer.CreateAnimal("Plant", "Medium");
+            //arrange
+            Program.AnimalContainer.CreateAnimal("Plants", "Small");
             Program.AnimalContainer.CreateAnimal("Meat", "Medium");
+            Program.AnimalContainer.CreateAnimal("Plants", "Large");
             Program.AnimalContainer.CreateAnimal("Meat", "Small");
+            Program.AnimalContainer.CreateAnimal("Meat", "Large");
+            Program.AnimalContainer.CreateAnimal("Plants", "Medium");
+            Program.AnimalContainer.CreateAnimal("Plants", "Small");
+            Program.AnimalContainer.CreateAnimal("Meat", "Medium");
+            Program.AnimalContainer.CreateAnimal("Plants", "Large");
+            Program.AnimalContainer.CreateAnimal("Meat", "Small");
+            Program.AnimalContainer.CreateAnimal("Plants", "Small");
+            Program.AnimalContainer.CreateAnimal("Plants", "Medium");
+            Program.AnimalContainer.CreateAnimal("Meat", "Large");
+            Program.AnimalContainer.CreateAnimal("Meat", "Medium");
+            Program.AnimalContainer.CreateAnimal("Plants", "Large");
+            Program.AnimalContainer.CreateAnimal("Meat", "Small");
+            Program.AnimalContainer.CreateAnimal("Plants", "Medium");
+            Program.AnimalContainer.CreateAnimal("Meat", "Large");
 
+            //act
             Program.WagonController.CheckNextAnimal();
 
-            //Expected outcome
-            AnimalContainer animalContainerTest = new AnimalContainer();
-            animalContainerTest.CreateAnimal("Plant", "Medium");
-            animalContainerTest.CreateAnimal("Meat", "Medium");
-            animalContainerTest.CreateAnimal("Meat", "Small");
-
-            WagonContainer wagonContainerTest = new WagonContainer();
-            wagonContainerTest.AddWagon();
-            wagonContainerTest.AddWagon();
-            wagonContainerTest.wagonList[0].WagonAnimalList.Add(animalContainerTest.animalList[0]);
-            wagonContainerTest.wagonList[0].WagonAnimalList.Add(animalContainerTest.animalList[2]);
-            wagonContainerTest.wagonList[1].WagonAnimalList.Add(animalContainerTest.animalList[1]);
-
-            for (int i = 0; i < wagonContainerTest.wagonList.Count; i++)
+            //assert
+            for (int i = 0; i < Program.WagonContainer.wagonList.Count; i++)
             {
-                Assert.AreEqual(wagonContainerTest.wagonList[i].WagonAnimalList[0].ToString(), Program.WagonContainer.wagonList[i].WagonAnimalList[0].ToString());
+                int totalPoints = 0;
+
+                foreach (Animal animal in Program.WagonContainer.wagonList[i].WagonAnimalList)
+                {
+                    totalPoints += animal.points;
+
+                    foreach (Animal otherAnimal in Program.WagonContainer.wagonList[i].WagonAnimalList)
+                    {
+                        Assert.IsFalse(Program.WagonContainer.wagonList[i].WagonAnimalList.IndexOf(animal) != Program.WagonContainer.wagonList[i].WagonAnimalList.IndexOf(otherAnimal) && animal.diet == "Meat" && animal.points >= otherAnimal.points);
+                    }
+                }
+
+                Assert.IsFalse(totalPoints > 10);
             }
         }
     }

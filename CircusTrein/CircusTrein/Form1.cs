@@ -33,7 +33,30 @@ namespace CircusTrein
             }
             else
             {
-                MessageBox.Show("Please fill in all paramaters first");
+                Program.AnimalContainer.CreateAnimal("Plants", "Small");
+                Program.AnimalContainer.CreateAnimal("Meat", "Medium");
+                Program.AnimalContainer.CreateAnimal("Plants", "Large");
+                Program.AnimalContainer.CreateAnimal("Meat", "Small");
+                Program.AnimalContainer.CreateAnimal("Meat", "Large");
+                Program.AnimalContainer.CreateAnimal("Plants", "Medium");
+                Program.AnimalContainer.CreateAnimal("Plants", "Small");
+                Program.AnimalContainer.CreateAnimal("Meat", "Medium");
+                Program.AnimalContainer.CreateAnimal("Plants", "Large");
+                Program.AnimalContainer.CreateAnimal("Meat", "Small");
+                Program.AnimalContainer.CreateAnimal("Plants", "Small");
+                Program.AnimalContainer.CreateAnimal("Plants", "Medium");
+                Program.AnimalContainer.CreateAnimal("Meat", "Large");
+                Program.AnimalContainer.CreateAnimal("Meat", "Medium");
+                Program.AnimalContainer.CreateAnimal("Plants", "Large");
+                Program.AnimalContainer.CreateAnimal("Meat", "Small");
+                Program.AnimalContainer.CreateAnimal("Plants", "Medium");
+                Program.AnimalContainer.CreateAnimal("Meat", "Large");
+
+                AnimalBox.Items.Clear();
+                foreach (Animal animal in Program.AnimalContainer.animalList)
+                {
+                    AnimalBox.Items.Add(animal);
+                }
             }
         }
 
