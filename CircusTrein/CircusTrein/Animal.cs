@@ -6,28 +6,42 @@ using System.Threading.Tasks;
 
 namespace CircusTrein
 {
+    public enum diet
+    {
+        Meat,
+        Plants
+    }
+
+    public enum size
+    {
+        Small,
+        Medium,
+        Large
+    }
+
     public class Animal
     {
-        public string diet { get; private set; }
-        public string size { get; private set; }
+        public diet Diet;
+        public size Size;
+
         public int points { get; private set; }
         public bool inWagon = false;
         public bool canEnter = true;
 
-        public Animal(string Diet, string Size)
+        public Animal(diet diet, size size)
         {
-            diet = Diet;
-            size = Size;
+            Diet = diet;
+            Size = size;
 
-            if (size == "Small")
+            if (Size == size.Small)
             {
                 points = 1;
             }
-            else if (size == "Medium")
+            else if (Size == size.Medium)
             {
                 points = 3;
             }
-            else if (size == "Large")
+            else if (Size == size.Large)
             {
                 points = 5;
             }
@@ -35,7 +49,7 @@ namespace CircusTrein
 
         public override string ToString()
         {
-            string animal = "Animal diet: " + diet + ". Size: " + size + ".";
+            string animal = "Animal diet: " + Convert.ToString(Diet) + ". Size: " + Convert.ToString(Size) + ".";
             return animal;
         }
     }

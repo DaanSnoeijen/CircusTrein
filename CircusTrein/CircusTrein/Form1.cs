@@ -21,9 +21,12 @@ namespace CircusTrein
 
         private void AddAnimalButton_Click(object sender, EventArgs e)
         {
-            if (DietBox.SelectedItem != null && SizeBox.SelectedItem != null)
+            try
             {
-                Program.AnimalContainer.CreateAnimal(DietBox.SelectedItem.ToString(), SizeBox.SelectedItem.ToString());
+                diet Diet = (diet)DietBox.SelectedItem;
+                size Size = (size)SizeBox.SelectedItem;
+
+                Program.AnimalContainer.CreateAnimal(Diet, Size);
 
                 AnimalBox.Items.Clear();
                 foreach (Animal animal in Program.AnimalContainer.animalList)
@@ -31,33 +34,10 @@ namespace CircusTrein
                     AnimalBox.Items.Add(animal);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Program.AnimalContainer.CreateAnimal("Plants", "Small");
-                Program.AnimalContainer.CreateAnimal("Meat", "Medium");
-                Program.AnimalContainer.CreateAnimal("Plants", "Large");
-                Program.AnimalContainer.CreateAnimal("Meat", "Small");
-                Program.AnimalContainer.CreateAnimal("Meat", "Large");
-                Program.AnimalContainer.CreateAnimal("Plants", "Medium");
-                Program.AnimalContainer.CreateAnimal("Plants", "Small");
-                Program.AnimalContainer.CreateAnimal("Meat", "Medium");
-                Program.AnimalContainer.CreateAnimal("Plants", "Large");
-                Program.AnimalContainer.CreateAnimal("Meat", "Small");
-                Program.AnimalContainer.CreateAnimal("Plants", "Small");
-                Program.AnimalContainer.CreateAnimal("Plants", "Medium");
-                Program.AnimalContainer.CreateAnimal("Meat", "Large");
-                Program.AnimalContainer.CreateAnimal("Meat", "Medium");
-                Program.AnimalContainer.CreateAnimal("Plants", "Large");
-                Program.AnimalContainer.CreateAnimal("Meat", "Small");
-                Program.AnimalContainer.CreateAnimal("Plants", "Medium");
-                Program.AnimalContainer.CreateAnimal("Meat", "Large");
-
-                AnimalBox.Items.Clear();
-                foreach (Animal animal in Program.AnimalContainer.animalList)
-                {
-                    AnimalBox.Items.Add(animal);
-                }
-            }
+                MessageBox.Show(ex.ToString());
+            } 
         }
 
         private void CalculateButton_Click(object sender, EventArgs e)

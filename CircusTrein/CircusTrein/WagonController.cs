@@ -76,7 +76,7 @@ namespace CircusTrein
             for (int i = 0; i < wagon.WagonAnimalList.Count; i++)
             {
                 //check if animals will eat eachother
-                if (animal.diet == "Meat" && animal.points >= wagon.WagonAnimalList[i].points || wagon.WagonAnimalList[i].diet == "Meat" && wagon.WagonAnimalList[i].points >= animal.points)
+                if (animal.Diet == diet.Meat && animal.points >= wagon.WagonAnimalList[i].points || wagon.WagonAnimalList[i].Diet == diet.Meat && wagon.WagonAnimalList[i].points >= animal.points)
                 {
                     animal.canEnter = false;
                 }

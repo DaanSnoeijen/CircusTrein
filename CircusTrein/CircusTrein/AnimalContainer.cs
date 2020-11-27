@@ -10,9 +10,9 @@ namespace CircusTrein
     {
         public List<Animal> animalList = new List<Animal>();
 
-        public void CreateAnimal(string diet, string size)
+        public void CreateAnimal(diet Diet, size Size)
         {
-            Animal animal = new Animal(diet, size);
+            Animal animal = new Animal(Diet, Size);
             animalList.Add(animal);
         }
     }
