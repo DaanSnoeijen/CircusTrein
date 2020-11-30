@@ -8,7 +8,7 @@ namespace CircustreinUnittests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestAlgorythm()
         {
             //arrange
             Program.AnimalContainer.CreateAnimal(diet.Plants, size.Small);
@@ -50,6 +50,32 @@ namespace CircustreinUnittests
 
                 Assert.IsFalse(totalPoints > 10);
             }
+        }
+
+        [TestMethod]
+        public void TestAnimalAdd()
+        {
+            //arrange
+            AnimalContainer animalContainer = new AnimalContainer();
+
+            //act
+            animalContainer.CreateAnimal(diet.Meat, size.Large);
+
+            //assert
+            Assert.IsTrue(animalContainer.animalList.Count == 1);
+        }
+
+        [TestMethod]
+        public void TestWagonAdd()
+        {
+            //arrange
+            WagonContainer wagonContainer = new WagonContainer();
+
+            //act
+            wagonContainer.AddWagon();
+
+            //assert
+            Assert.IsTrue(wagonContainer.wagonList.Count == 1);
         }
     }
 }
