@@ -15,7 +15,7 @@ namespace CircusTrein
 
         public override string ToString()
         {
-            return Convert.ToString(Program.WagonContainer.wagonList.IndexOf(this) + 1 + " Aantal dieren in wagon: " + WagonAnimalList.Count);
+            return Convert.ToString("Aantal dieren in wagon: " + WagonAnimalList.Count);
         }
     }
 }
