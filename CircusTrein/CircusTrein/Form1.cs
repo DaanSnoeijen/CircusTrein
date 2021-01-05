@@ -12,16 +12,10 @@ namespace CircusTrein
 {
     public partial class Form1 : Form
     {
-        IAnimalContainer AnimalContainer;
-        IWagonContainer WagonContainer;
-
         string animalsInWagon;
 
-        public Form1(IAnimalContainer animalContainer, IWagonContainer wagonContainer)
+        public Form1()
         {
-            AnimalContainer = animalContainer;
-            WagonContainer = wagonContainer;
-
             InitializeComponent();
         }
 
@@ -29,10 +23,13 @@ namespace CircusTrein
         {
             try
             {
-                AnimalContainer.CreateAnimal((diet)DietBox.SelectedItem, (size)SizeBox.SelectedItem);
+                diet Diet = (diet)DietBox.SelectedItem;
+                size Size = (size)SizeBox.SelectedItem;
+
+                Program.AnimalContainer.CreateAnimal(Diet, Size);
 
                 AnimalBox.Items.Clear();
-                foreach (Animal animal in AnimalContainer.AnimalList())
+                foreach (Animal animal in Program.AnimalContainer.animalList)
                 {
                     AnimalBox.Items.Add(animal);
                 }
@@ -49,7 +46,7 @@ namespace CircusTrein
 
             Program.WagonController.CheckNextAnimal();
 
-            foreach (Wagon wagon in WagonContainer.WagonList())
+            foreach (Wagon wagon in Program.WagonContainer.wagonList)
             {
                 WagonBox.Items.Add(wagon);
             }
@@ -59,7 +56,7 @@ namespace CircusTrein
         {
             if (AnimalBox.SelectedItem != null)
             {
-                AnimalContainer.AnimalList().RemoveAt(AnimalBox.SelectedIndex);
+                Program.AnimalContainer.animalList.RemoveAt(AnimalBox.SelectedIndex);
                 AnimalBox.Items.RemoveAt(AnimalBox.SelectedIndex);
             }
             else
@@ -72,7 +69,7 @@ namespace CircusTrein
         {
             animalsInWagon = "";
 
-            foreach (Animal animal in WagonContainer.WagonList()[WagonBox.SelectedIndex].WagonAnimalList)
+            foreach (Animal animal in Program.WagonContainer.wagonList[WagonBox.SelectedIndex].WagonAnimalList)
             {
                 animalsInWagon += animal.ToString() + System.Environment.NewLine;
             }

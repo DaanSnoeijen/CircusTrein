@@ -8,19 +8,10 @@ namespace CircusTrein
 {
     public class WagonController
     {
-        IAnimalContainer AnimalContainer;
-        IWagonContainer WagonContainer;
-
-        public WagonController(IAnimalContainer animalContainer, IWagonContainer wagonContainer)
-        {
-            AnimalContainer = animalContainer;
-            WagonContainer = wagonContainer;
-        }
-
         //check if animal is not in wagon
         public void CheckNextAnimal()
         {
-            foreach (Animal animal in AnimalContainer.AnimalList())
+            foreach (Animal animal in Program.AnimalContainer.animalList)
             {
                 if (!animal.inWagon)
                 {
@@ -32,14 +23,14 @@ namespace CircusTrein
         //check if there's a wagon
         public void CheckWagon(Animal animal)
         {
-            if (WagonContainer.WagonList().Count == 0)
+            if (Program.WagonContainer.wagonList.Count == 0)
             {
                 //make wagon
-                WagonContainer.AddWagon();
+                Program.WagonContainer.AddWagon();
 
                 //put animal in wagon
-                WagonContainer.WagonList()[WagonContainer.WagonList().Count - 1].WagonAnimalList.Add(animal);
-                WagonContainer.WagonList()[WagonContainer.WagonList().Count - 1].points += animal.points;
+                Program.WagonContainer.wagonList[Program.WagonContainer.wagonList.Count - 1].WagonAnimalList.Add(animal);
+                Program.WagonContainer.wagonList[Program.WagonContainer.wagonList.Count - 1].points += animal.points;
                 animal.inWagon = true;
 
                 //start over
@@ -55,23 +46,23 @@ namespace CircusTrein
         public void CheckSpacePreviousWagons(Animal animal, int index)
         {
             //check every wagon
-            for (int i = index; i < WagonContainer.WagonList().Count; i++)
+            for (int i = index; i < Program.WagonContainer.wagonList.Count; i++)
             {
                 //check space inside wagon
-                if (WagonContainer.WagonList()[i].points + animal.points <= WagonContainer.WagonList()[i].maxPoints)
+                if (Program.WagonContainer.wagonList[i].points + animal.points <= Program.WagonContainer.wagonList[i].maxPoints)
                 {
-                    CheckFood(animal, WagonContainer.WagonList()[i]);
+                    CheckFood(animal, Program.WagonContainer.wagonList[i]);
                 }
             }
 
             if (!animal.inWagon)
             {
                 //make wagon
-                WagonContainer.AddWagon();
+                Program.WagonContainer.AddWagon();
 
                 //put animal in wagon
-                WagonContainer.WagonList()[WagonContainer.WagonList().Count - 1].WagonAnimalList.Add(animal);
-                WagonContainer.WagonList()[WagonContainer.WagonList().Count - 1].points += animal.points;
+                Program.WagonContainer.wagonList[Program.WagonContainer.wagonList.Count - 1].WagonAnimalList.Add(animal);
+                Program.WagonContainer.wagonList[Program.WagonContainer.wagonList.Count - 1].points += animal.points;
                 animal.inWagon = true;
 
                 //start over
@@ -103,7 +94,7 @@ namespace CircusTrein
             }
             else
             {
-                CheckSpacePreviousWagons(animal, WagonContainer.WagonList().IndexOf(wagon) + 1);
+                CheckSpacePreviousWagons(animal, Program.WagonContainer.wagonList.IndexOf(wagon) + 1);
             }
         }
     }

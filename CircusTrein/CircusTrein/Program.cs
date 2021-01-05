@@ -8,17 +8,19 @@ namespace CircusTrein
 {
     public static class Program
     {
-        static IAnimalContainer AnimalContainer = new AnimalContainer();
-        static IWagonContainer WagonContainer = new WagonContainer();
+        public static AnimalContainer AnimalContainer = new AnimalContainer();
+        public static WagonContainer WagonContainer = new WagonContainer();
+        public static WagonController WagonController = new WagonController();
 
-        public static WagonController WagonController = new WagonController(AnimalContainer, WagonContainer);
-
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(AnimalContainer, WagonContainer));
+            Application.Run(new Form1());
         }
     }
 }

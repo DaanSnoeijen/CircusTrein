@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CircusTrein
 {
-    public class WagonContainer : IWagonContainer
+    public class WagonContainer
     {
         public List<Wagon> wagonList = new List<Wagon>();
 
@@ -14,11 +14,6 @@ namespace CircusTrein
         {
             Wagon wagon = new Wagon();
             wagonList.Add(wagon);
-        }
-
-        public List<Wagon> WagonList()
-        {
-            return wagonList;
         }
     }
 }

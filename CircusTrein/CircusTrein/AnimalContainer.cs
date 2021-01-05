@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CircusTrein
 {
-    public class AnimalContainer : IAnimalContainer
+    public class AnimalContainer
     {
         public List<Animal> animalList = new List<Animal>();
 
@@ -14,11 +14,6 @@ namespace CircusTrein
         {
             Animal animal = new Animal(Diet, Size);
             animalList.Add(animal);
-        }
-
-        public List<Animal> AnimalList()
-        {
-            return animalList;
         }
     }
 }
